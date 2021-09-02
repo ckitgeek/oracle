@@ -1,2 +1,4 @@
 #temp tablespace free %
 select tablespace_name, ' %free='|| round(sum(free_blocks) / sum(total_blocks) * 100 ,0) from gv$sort_segment group by tablespace_name;
+# add datafile tio temp
+ALTER TABLESPACE TEMP ADD TEMPFILE '+DATA' SIZE 100M AUTOEXTEND ON NEXT 100M MAXSIZE 31744M;
